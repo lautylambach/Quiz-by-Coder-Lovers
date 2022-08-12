@@ -9,7 +9,10 @@ export class Quiz{
     }
     validateAndContinue(answer){
         if(this.getCurrentQuestion().isCorrectAnswer(answer)){
-            this.score++}
+            
+            this.score++
+            
+        }
         this.questionIndex++            
     }
    

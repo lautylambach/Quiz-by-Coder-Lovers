@@ -1,11 +1,23 @@
 import { questionArray } from "./Questions.js"
 import {Quiz} from "./models/Quiz.js"
 import{UI} from "./models/UI.js"
-
+const renderPage=(quiz,ui)=>{
+    if(quiz.isEnded()){
+        ui.showScore(quiz.score)
+    }else{
+        ui.showQuestion(quiz.getCurrentQuestion().text)
+        ui.showChoices(quiz.getCurrentQuestion().choices, (currentChoice)=>{
+            quiz.validateAndContinue(currentChoice)
+            
+            renderPage(quiz,ui)
+        })
+        ui.showProgress(quiz.questionIndex+1,questionArray.length)
+    }
+    
+}
 const main = ()=>{
     const quiz =new Quiz(questionArray)
     const ui= new UI
-    ui.showQuestion(quiz.getCurrentQuestion().text)
-    ui.showChoices(quiz.getCurrentQuestion().choices)
+   renderPage(quiz,ui)
 }
 main()
