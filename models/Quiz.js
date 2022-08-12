@@ -7,11 +7,12 @@ export class Quiz{
     getCurrentQuestion(){
         return this.questions[this.questionIndex]
     }
-    continue(answer){
+    validateAndContinue(answer){
         if(this.getCurrentQuestion().isCorrectAnswer(answer)){
             this.score++}
         this.questionIndex++            
     }
+   
     isEnded(){
         //mnemotecnia para ght
         //go to hell
